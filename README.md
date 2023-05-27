@@ -6,10 +6,8 @@
   "name": "string",
   "filters": {
     "type": "string",
-    "size": {
-      "h": "integer",
-      "w": "integer"
-    }
+    "h": "integer",
+    "w": "integer"
   },
   "price": "float"
 }
