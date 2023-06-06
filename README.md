@@ -81,5 +81,5 @@
 | GET | `/tree/:key` | returns the leaf for given key. (A leaf is a map of Ads that respect same)|
 
 # TODO
- - [ ] Respect golang standard directory structure https://github.com/golang-standards/project-layout
+ - [x] Respect golang standard directory structure https://github.com/golang-standards/project-layout
  - [ ] Implements `/bidrequest` route

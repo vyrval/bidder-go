@@ -1,24 +1,28 @@
-package main
+package bidder
 
 import (
 	"encoding/json"
 	"log"
 
-	"ako.com/internal/ad"
+	. "ako.com/internal/bidder"
+	memory "ako.com/internal/inmemorycache"
 	"github.com/gin-gonic/gin"
 )
+
+var adDB AdDriver = memory.InMemoryCache{}
 
 func healthHandler(c *gin.Context) {
 	c.AbortWithStatus(200)
 }
 
 func getAllAds(c *gin.Context) {
-	c.JSON(200, ad.GetAllAds())
+	c.JSON(200, adDB.GetAll())
 }
 
 func getAdById(c *gin.Context) {
 	id := c.Param("id")
-	if ad, found := ad.GetAdById(id); found {
+
+	if ad, found := adDB.Get(id); found {
 		c.JSON(200, ad)
 	} else {
 		c.AbortWithStatus(204)
@@ -28,22 +32,22 @@ func getAdById(c *gin.Context) {
 func createAd(c *gin.Context) {
 	request := c.Request
 
-	var newAd ad.Ad
+	var newAd Ad
 	err := json.NewDecoder(request.Body).Decode(&newAd)
 	if err != nil {
 		log.Println(err)
 		c.JSON(400, err.Error())
 		return
 	}
-	c.JSON(201, *ad.CreateAd(newAd))
+	c.JSON(201, *adDB.Upsert(newAd))
 }
 
 func getAllLeaves(c *gin.Context) {
-	c.JSON(200, ad.GetTree())
+	c.JSON(200, adDB.GetTree())
 }
 func getLeafByKey(c *gin.Context) {
 	key := c.Param("key")
-	if leaf, found := ad.GetLeafByKey(key); found {
+	if leaf, found := adDB.GetByKey(key); found {
 		c.JSON(200, leaf)
 	} else {
 		c.AbortWithStatus(204)
