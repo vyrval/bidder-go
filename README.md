@@ -71,11 +71,15 @@
 | METHOD | Path | Description |
 |---|---|---|
 | GET | `/health` | returns 200 |
-| GET | `/bidrequest/` | returns 200 + Bid Response or 204 | 
+| GET | `/bidrequest` | returns 200 + Bid Response or 204 | 
 | GET | `/ads` | returns all ads |
 | GET | `/ads/:id` | returns ad with id or 204 |
 | POST | `/ads` | creates an ad |
 | PUT | `/ads/:id` | updates an ad |
 | DELETE | `/ads/:id` | deletes an ad |
 | GET | `/tree` | returns whole tree of sorted ads. Ads are sorted so it's faster to find them at bidding time. |
-| GET | `/tree/:key` | returns the leaf for given key. |
+| GET | `/tree/:key` | returns the leaf for given key. (A leaf is a map of Ads that respect same)|
+
+# TODO
+ - [ ] Respect golang standard directory structure https://github.com/golang-standards/project-layout
+ - [ ] Implements `/bidrequest` route

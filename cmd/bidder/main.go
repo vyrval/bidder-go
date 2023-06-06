@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"log"
 
-	"ako.com/ad"
+	"ako.com/internal/ad"
 	"github.com/gin-gonic/gin"
 )
 
