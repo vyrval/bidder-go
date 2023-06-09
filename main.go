@@ -1,4 +1,4 @@
-package bidder
+package main
 
 import (
 	"encoding/json"
@@ -53,6 +53,9 @@ func getLeafByKey(c *gin.Context) {
 		c.AbortWithStatus(204)
 	}
 }
+func postBidRequest(c *gin.Context) {
+	c.AbortWithStatus(204)
+}
 
 func main() {
 	router := gin.Default()
@@ -65,6 +68,7 @@ func main() {
 	router.GET("/tree/:key", getLeafByKey)
 
 	router.POST("/ads", createAd)
+	router.POST("/bidrequest", postBidRequest)
 
 	router.Run("localhost:8080")
 }

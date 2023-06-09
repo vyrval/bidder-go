@@ -82,4 +82,7 @@
 
 # TODO
  - [x] Respect golang standard directory structure https://github.com/golang-standards/project-layout
+ - [ ] Add swagger
  - [ ] Implements `/bidrequest` route
+ - [ ] Add unit tests
+ - [ ] Add system tests
